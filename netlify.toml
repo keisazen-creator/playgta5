@@ -1,0 +1,16 @@
+[build]
+  command = "python3 build_web.py"
+  publish = "web-output"
+
+# Cross-origin isolation enables the shared-memory game workers.
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Cross-Origin-Opener-Policy = "same-origin"
+    Cross-Origin-Embedder-Policy = "require-corp"
+    Cross-Origin-Resource-Policy = "same-origin"
+
+[[headers]]
+  for = "/b/*/game.wasm"
+  [headers.values]
+    Content-Type = "application/wasm"
